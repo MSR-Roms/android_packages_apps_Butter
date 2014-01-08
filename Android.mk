@@ -7,13 +7,23 @@ LOCAL_SRC_FILES := src/com/spacecaker/butter/IApolloService.aidl
 LOCAL_SRC_FILES += $(call all-java-files-under, src)
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-support-v4
+    android-support-v4 \
+    android-query
 
 LOCAL_PACKAGE_NAME := Butter
+
 LOCAL_OVERRIDES_PACKAGES := Music
 
 LOCAL_SDK_VERSION := current
-LOCAL_PROGUARD_FLAG_FILES := proguard.flags
+
+LOCAL_PROGUARD_FLAG_FILES := proguard.cfg
 
 include $(BUILD_PACKAGE)
+
+##################################################
+include $(CLEAR_VARS)
+
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := android-query:libs/android-query-0.21.7.jar
+
+include $(BUILD_MULTI_PREBUILT)
 
